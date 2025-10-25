@@ -1,0 +1,121 @@
+/* RESET BÁSICO Y FUENTE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+  background-color: #ffffff;
+  color: #333;
+  /* Necesario para que la barra lateral ocupe toda la altura */
+  min-height: 100vh;
+}
+
+/* --- DISPOSICIÓN DE LA PÁGINA: Dos columnas (Sidebar + Content) --- */
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- BARRA LATERAL (SIDEBAR) --- */
+.sidebar {
+  background-color: #007bff; /* Color azul */
+  width: 200px; /* Ancho fijo de la barra */
+  color: white;
+  padding-top: 20px;
+  flex-shrink: 0; /* Evita que se encoja */
+}
+
+/* Estilos para los botones/enlaces de la barra lateral */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-button {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  transition: background-color 0.3s;
+}
+
+/* EFECTO HOVER: Cambio de color al pasar el mouse */
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+/* --- ÁREA DE CONTENIDO PRINCIPAL (Derecha) --- */
+/* Esta clase reemplaza a la antigua .content para poder convivir con el sidebar */
+.content-area {
+  flex-grow: 1;
+  /* Relleno con más espacio a la izquierda para separarlo de la barra */
+  padding: 20px 20px 20px 40px;
+}
+
+.hero {
+  /* El max-width y el centrado se manejan aquí en lugar del antiguo .content */
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center; /* Centra los logos y títulos dentro del hero */
+}
+
+/* --- LOGO CONTENEDOR DE IMAGENES --- */
+.logo-container {
+  /* Valor mantenido del código proporcionado */
+  margin: 10px 0;
+}
+
+/* 1. CLASE PARA LA IMAGEN SUPERIOR (letters.jpg) */
+.logo-top-text {
+  /* VALOR DE TAMAÑO MANTENIDO: 600px */
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 2. CLASE PARA EL LOGO PRINCIPAL (innovatech.jpg) */
+.logo-img {
+  /* VALOR DE TAMAÑO MANTENIDO: 300px */
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* --- SECCIÓN DE DESCRIPCIÓN --- */
+.description-section {
+  text-align: left; /* Alineación del texto del párrafo */
+  margin-top: 40px;
+}
+
+.description-section h2 {
+  color: #007bff;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.description-section p {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 0.95em;
+}
+
+/* Enlace "Sobre nosotros" */
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
