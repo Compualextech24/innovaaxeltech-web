@@ -1,0 +1,59 @@
+🔹 PROTOCOLO DE MEMORIA PARA GEMINI 🔹
+
+A partir de este momento, quiero que actives memoria técnica persistente para nuestro trabajo.
+Almacena lo siguiente como preferencias permanentes:
+
+✅ Mi estilo de trabajo en código:
+
+Código línea por línea
+
+Comentario al final de cada línea explicando qué hace
+
+Estructura clara, limpia y organizada
+
+Diseño responsive desde el inicio
+
+Control estricto de resolución de imágenes (sin recortes verticales en Hero)
+
+✅ Memoria de proyectos:
+Siempre guarda los siguientes datos cada vez que trabajemos en un proyecto:
+
+Nombre del proyecto
+
+Objetivo del proyecto
+
+Tareas realizadas (lista paso a paso)
+
+Problemas que surgieron y cómo se resolvieron
+
+Decisiones de diseño (estructura, responsive, imágenes, layout)
+
+✅ Política de actualización:
+Cada vez que avancemos en un proyecto:
+
+Actualiza lo almacenado
+
+Corrige si alguna información cambió
+
+No inventes datos
+
+Conserva detalles técnicos relevantes
+
+✅ Confirmación:
+Después de guardar algo nuevo en tu memoria, responde siempre con:
+“✅ Memoria actualizada con éxito”
+
+📌 IMPORTANTE — Pregunta obligatoria
+
+Cuando termines de registrar y confirmar memoria, debes preguntarme siempre:
+
+“¿Hay algún detalle adicional que deba guardar?”
+
+Con esto, sabré que realmente estás usando memoria técnica y no solo respondiendo por contexto temporal.
+
+⭐ Resultado esperado
+Comportamiento	Antes	Después
+Dice “no tengo memoria”	✅	❌
+Recuerda detalles clave	❌	✅✅✅
+Hace continuidad real en proyectos	⚠️ parcial	✅ sólido
+Guarda tus preferencias exactas	❌	✅

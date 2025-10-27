@@ -1,121 +1,487 @@
-/* RESET BÁSICO Y FUENTE */
+/* --- BASE & RESET --- */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Elimina márgenes por defecto */
+  padding: 0; /* Elimina padding por defecto */
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+html, /* Selecciona el elemento raíz de la página */
+body {
+  /* Y el cuerpo de la página */
+  width: 100%; /* El ancho total no puede exceder el 100% de la ventana de navegación. */
+  overflow-x: hidden; /* Oculta cualquier barra de desplazamiento horizontal no deseada. */
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  line-height: 1.6;
-  background-color: #ffffff;
-  color: #333;
-  /* Necesario para que la barra lateral ocupe toda la altura */
-  min-height: 100vh;
+  font-family: "Poppins", sans-serif; /* Fuente principal */
+  line-height: 1.6; /* Altura de línea legible */
+  color: #020202; /* Color de texto general */
+  background-color: #f0f4f8; /* Color de fondo general más claro, similar al blanco azulado de la imagen */
+  display: flex; /* Flex para layout principal */
+  flex-direction: column; /* Apila contenido verticalmente */
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
 }
 
-/* --- DISPOSICIÓN DE LA PÁGINA: Dos columnas (Sidebar + Content) --- */
-.page-wrapper {
+/* --- UTILITIES (Botones) --- */
+.btn-primary {
+  background-color: #007bff; /* Azul primario */
+  color: white; /* Texto blanco */
+  padding: 10px 20px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer al pasar */
+  font-weight: 500; /* Grosor de fuente */
+  transition: background-color 0.3s ease; /* Animación de hover */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Azul más oscuro al hover */
+}
+
+.btn-secondary {
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 12px 25px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer al pasar */
+  font-weight: 500; /* Grosor de fuente */
+  font-size: 1.1em; /* Tamaño de fuente */
+  transition: background-color 0.3s ease; /* Animación de hover */
+}
+
+.btn-secondary:hover {
+  background-color: #0056b3; /* Azul más oscuro al hover */
+}
+
+.btn-card {
+  background-color: #e0f2fe; /* Azul muy claro */
+  color: #007bff; /* Color de texto azul */
+  padding: 8px 15px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer al pasar */
+  font-weight: 500; /* Grosor de fuente */
+  font-size: 0.9em; /* Tamaño de fuente pequeño */
+  transition: background-color 0.3s ease; /* Animación de hover */
+}
+
+.btn-card:hover {
+  background-color: #cce7ff; /* Color al pasar el cursor */
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  display: flex; /* Flex horizontal */
+  justify-content: space-between; /* Separar elementos a extremos */
+  align-items: center; /* Centrar verticalmente */
+  padding: 15px 5%; /* Espaciado lateral */
+  background-color: white; /* Fondo blanco */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+  z-index: 1000; /* Encima de otros elementos */
+}
+
+.navbar-logo {
+  display: flex; /* Logo y texto juntos */
+  align-items: center; /* Centrado vertical */
+  font-size: 1.4em; /* Tamaño de fuente del texto del logo */
+  font-weight: 600; /* Grosor de fuente */
+  color: #333; /* Color de texto */
+}
+
+.navbar-logo .logo-image {
+  height: 30px; /* Tamaño del logo */
+  margin-right: 8px; /* Separación del texto */
+}
+
+.navbar-nav {
+  display: flex; /* Lista de links horizontal */
+  gap: 30px; /* Espacio entre items */
+}
+
+.nav-item {
+  text-decoration: none; /* Sin subrayado */
+  color: #555; /* Color de texto */
+  font-weight: 500; /* Grosor de fuente */
+  padding: 5px 0; /* Espaciado vertical */
+  position: relative; /* Para la línea activa */
+  transition: color 0.3s ease; /* Animación de color */
+}
+
+.nav-item:hover {
+  color: #007bff; /* Color azul al pasar el cursor */
+}
+
+.nav-item.active {
+  color: #007bff; /* Color azul para el item activo */
+  font-weight: 600; /* Más grosor para el activo */
+}
+
+.nav-item.active::after {
+  content: ""; /* Crea un elemento de línea */
+  position: absolute; /* Posicionamiento absoluto */
+  bottom: -5px; /* Debajo del texto */
+  left: 0; /* Inicia a la izquierda */
+  width: 100%; /* Cubre todo el ancho del item */
+  height: 3px; /* Grosor de la línea */
+  background-color: #007bff; /* Color azul de la línea */
+  border-radius: 2px; /* Bordes redondeados */
+}
+
+.navbar-actions {
+  display: flex; /* Flex horizontal */
+  align-items: center; /* Centrado vertical */
+  gap: 20px; /* Espacio entre elementos */
+}
+
+/* --- HERO SECTION - IMAGEN COMPLETA CON TEXTO SUPERPUESTO --- */
+.hero-section {
+  position: relative; /* Para posicionar la imagen de fondo */
+  display: flex; /* Flexbox para el contenido */
+  align-items: center; /* Centra verticalmente el contenido */
+  height: 700px; /* Altura fija de la sección */
+  padding: 0; /* Sin padding */
+  overflow: hidden; /* Oculta partes de la imagen que se desborden */
+}
+
+.hero-content {
+  position: relative; /* Posicionamiento relativo */
+  z-index: 10; /* Se mantiene sobre la imagen */
+  text-align: left; /* Alineación del texto */
+  color: #fff; /* Color de texto blanco */
+  padding: 80px 5%; /* Espaciado del contenido */
+  max-width: 600px; /* Ancho máximo del bloque de texto */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra para mejor legibilidad */
+}
+
+.hero-subtitle {
+  font-size: 0.9em; /* Tamaño de fuente */
+  font-weight: 500; /* Grosor de fuente */
+  color: #90caf9; /* Color azul claro */
+  margin-bottom: 10px; /* Margen inferior */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+.hero-title {
+  font-size: 3.5em; /* Tamaño de fuente grande */
+  font-weight: 700; /* Grosor de fuente negrita */
+  margin-bottom: 20px; /* Margen inferior */
+  line-height: 1.1; /* Altura de línea ajustada */
+  color: #fff; /* Color blanco */
+}
+
+.hero-description {
+  font-size: 1.1em; /* Tamaño de fuente */
+  color: #e3f2fd; /* Color blanco azulado */
+  margin-bottom: 30px; /* Margen inferior */
+}
+
+/* --- HERO IMAGE - FONDO COMPLETO --- */
+.hero-image {
+  position: absolute; /* Posicionamiento absoluto para ser el fondo */
+  top: 0; /* Arriba */
+  left: 0; /* Izquierda */
+  width: 100%; /* Ocupa todo el ancho */
+  height: 100%; /* Ocupa toda la altura */
+  z-index: 1; /* Detrás del contenido */
+}
+
+.hero-illustration-img {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100%; /* Ocupa toda la altura del contenedor */
+  object-fit: cover; /* Cubre el contenedor recortando si es necesario */
+  object-position: center; /* Centra la imagen */
+  display: block; /* Elimina espacio debajo de la imagen */
+}
+
+/* Overlay opcional para mejor legibilidad del texto */
+.hero-section::before {
+  content: ""; /* Crea un pseudo-elemento */
+  position: absolute; /* Posicionamiento absoluto */
+  top: 0; /* Arriba */
+  left: 0; /* Izquierda */
+  width: 100%; /* Ocupa todo el ancho */
+  height: 100%; /* Ocupa toda la altura */
+  background: linear-gradient(
+    /* Degradado para oscurecer */ 90deg,
+    /* Dirección del degradado */ rgba(0, 0, 0, 0.5) 0%,
+    /* Negro semi-transparente en el inicio */ rgba(0, 0, 0, 0.2) 50%,
+    /* Menos opacidad en el centro */ rgba(0, 0, 0, 0) 100%
+      /* Transparente al final */
+  );
+  z-index: 5; /* Entre la imagen y el contenido */
+}
+
+/* --- RESPONSIVE HERO OPTIMIZADO --- */
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 600px; /* Reduce la altura en tablets */
+  }
+
+  .hero-content {
+    max-width: 100%; /* Ocupa todo el ancho */
+    text-align: center; /* Centra el texto */
+    padding: 60px 5%; /* Espaciado */
+  }
+
+  .hero-section::before {
+    background: rgba(
+      0,
+      0,
+      0,
+      0.4
+    ); /* Fondo semi-oscuro uniforme para móviles */
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    height: 500px; /* Reduce más la altura en móviles */
+  }
+
+  .hero-title {
+    font-size: 2.5em; /* Ajusta tamaño del título */
+  }
+
+  .hero-description {
+    font-size: 1em; /* Ajusta tamaño del texto */
+  }
+
+  .hero-subtitle {
+    font-size: 0.8em; /* Ajusta tamaño del subtítulo */
+  }
+
+  .hero-content {
+    padding: 40px 5%; /* Menos padding en móviles */
+  }
+}
+
+/* --- SERVICES SECTION --- */
+.services-section {
+  padding: 60px 5%; /* Espaciado interno de la sección */
+  padding-bottom: 1px;
+  text-align: center; /* Alinea el subtítulo y el título */
+  /* Fondo con degradado diagonal de blanco, gris y blanco */
+  background: linear-gradient(
+    135deg,
+    rgb(230, 243, 248) 50%,
+    /* Gris semi-transparente en el medio */ rgba(252, 252, 252, 0.705) 100%
+      /* Blanco casi opaco al final */
+  );
+}
+
+.section-title {
+  font-size: 2.5em; /* Tamaño de fuente del título */
+  font-weight: 700; /* Grosor de fuente */
+  color: #222; /* Color de texto oscuro */
+  margin-bottom: 15px; /* Margen inferior */
+}
+
+.section-subtitle {
+  font-size: 1.1em; /* Tamaño de fuente */
+  color: #555; /* Color de texto */
+  margin-bottom: 50px; /* Margen inferior grande */
+  max-width: 700px; /* Ancho máximo */
+  margin-left: auto; /* Centrado horizontal */
+  margin-right: auto; /* Centrado horizontal */
+}
+
+.service-cards {
+  display: grid; /* Layout de cuadrícula */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Columnas responsivas automáticas */
+  gap: 30px; /* Espacio entre las tarjetas */
+  max-width: 1200px; /* Ancho máximo del contenedor de tarjetas */
+  margin: 0 auto; /* Centrado del contenedor */
+}
+
+.card {
+  /* Fondo con degradado diagonal de blanco, gris y blanco */
+  background: linear-gradient(
+    135deg,
+    rgba(230, 243, 248, 0.555) 50%,
+    /* Gris semi-transparente en el medio */ rgba(252, 252, 252, 0.705) 100%
+      /* Blanco casi opaco al final */
+  );
+  /* Degradado de azul cielo semi-transparente a blanco casi opaco */
+  border-radius: 12px; /* Bordes redondeados */
+  padding: 30px; /* Espaciado interno */
+  box-shadow: 0 4px 20px rgba(95, 95, 95, 0.658); /* Sombra más sutil y azulada para coincidir con la imagen */
+  text-align: center; /* Centra el contenido */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación de hover */
+  border: 1px solid rgba(224, 231, 238, 0.5); /* Borde sutil y semi-transparente */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Se levanta un poco */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Sombra más grande al pasar el cursor */
+}
+
+/* Contenedor del ícono */
+.card-icon {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: 250px; /* Altura del contenedor para el ícono */
   display: flex;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0; /* Margen superior e inferior para centrar y separar */
+  position: relative; /* Necesario para el posicionamiento absoluto del 'glow' */
+  z-index: 1; /* Asegura que el icono esté por encima del 'glow' */
 }
 
-/* --- BARRA LATERAL (SIDEBAR) --- */
-.sidebar {
-  background-color: #007bff; /* Color azul */
-  width: 200px; /* Ancho fijo de la barra */
-  color: white;
-  padding-top: 20px;
-  flex-shrink: 0; /* Evita que se encoja */
+/* Imagen del ícono (Aumentamos el tamaño) */
+.card-icon img {
+  max-width: 250px; /* Aumenta el ancho máximo */
+  max-height: 250px; /* Aumenta la altura máxima */
+  object-fit: contain;
+  transform: translateY(
+    -20px
+  ); /* Elevamos un poco más la imagen para que flote sobre la tarjeta */
+  border-radius: 50%; /* Si la imagen es un círculo */
 }
 
-/* Estilos para los botones/enlaces de la barra lateral */
-.sidebar-nav {
-  display: flex;
-  flex-direction: column;
+/* Nuevo estilo para el "glow" azul detrás del ícono */
+.card-icon::before {
+  content: ""; /* Crea un pseudo-elemento para el "glow" */
+  position: absolute; /* Posicionamiento absoluto con respecto a .card-icon */
+  width: 180px; /* Tamaño del "glow" */
+  height: 180px; /* Tamaño del "glow" */
+  background: radial-gradient(
+    circle,
+    rgba(150, 200, 250, 0.3) 0%,
+    rgba(150, 200, 250, 0) 70%
+  ); /* Degradado radial para el efecto de "glow" */
+  border-radius: 50%; /* Hace que el "glow" sea circular */
+  z-index: 0; /* Coloca el "glow" detrás del ícono */
+  filter: blur(25px); /* Aplica un desenfoque para suavizar el "glow" */
+  transform: translateY(
+    -20px
+  ); /* Ajusta la posición del "glow" para que siga al ícono */
 }
 
-.nav-button {
-  display: block;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: white;
-  font-size: 1em;
-  font-weight: 400;
-  transition: background-color 0.3s;
+.card h3 {
+  font-size: 1.3em; /* Tamaño del título de la tarjeta */
+  font-weight: 600; /* Grosor de fuente */
+  color: #333; /* Color de texto */
+  margin-bottom: 10px; /* Margen inferior */
 }
 
-/* EFECTO HOVER: Cambio de color al pasar el mouse */
-.nav-button:hover {
-  background-color: #0056b3;
+.card p {
+  font-size: 0.95em; /* Tamaño del texto descriptivo */
+  color: #666; /* Color de texto más suave */
+  margin-bottom: 20px; /* Margen inferior */
+  min-height: 60px; /* Altura mínima para mantener consistencia */
 }
 
-/* --- ÁREA DE CONTENIDO PRINCIPAL (Derecha) --- */
-/* Esta clase reemplaza a la antigua .content para poder convivir con el sidebar */
-.content-area {
-  flex-grow: 1;
-  /* Relleno con más espacio a la izquierda para separarlo de la barra */
-  padding: 20px 20px 20px 40px;
+/* --- TERCERA SECCIÓN: DESCARGA DE PROGRAMAS (NUEVO ESTILO) --- */
+.download-section {
+/* POR ESTA LÍNEA (Blanco con 80% de opacidad, 0.8): */
+  background-color: rgba(133, 133, 133, 0.144);
+  padding: 80px 5%; /* Espaciado interno */
+  text-align: center; /* Alinea el contenido por defecto */
 }
 
-.hero {
-  /* El max-width y el centrado se manejan aquí en lugar del antiguo .content */
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center; /* Centra los logos y títulos dentro del hero */
+.download-content-wrapper {
+  display: flex; /* Usamos Flexbox para colocar la imagen y el texto lado a lado */
+  align-items: center; /* Centra los ítems verticalmente */
+  justify-content: center; /* Centra el bloque dentro del contenedor de la sección */
+  max-width: 1100px; /* Ancho máximo similar al resto del contenido */
+  height: 250px;
+  margin: 0 auto; /* Centra el wrapper horizontalmente */
+  gap: 50px; /* Espacio entre el texto y la imagen */
+  flex-direction: row; /* Por defecto: texto a la izquierda, imagen a la derecha */
 }
 
-/* --- LOGO CONTENEDOR DE IMAGENES --- */
-.logo-container {
-  /* Valor mantenido del código proporcionado */
-  margin: 10px 0;
+/* Contenedor del texto (título y botón) */
+.download-text {
+  max-width: 450px; /* Limita el ancho del texto */
+  text-align: left; /* Alinea el texto a la izquierda dentro de este contenedor */
 }
 
-/* 1. CLASE PARA LA IMAGEN SUPERIOR (letters.jpg) */
-.logo-top-text {
-  /* VALOR DE TAMAÑO MANTENIDO: 600px */
-  max-width: 600px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* 2. CLASE PARA EL LOGO PRINCIPAL (innovatech.jpg) */
-.logo-img {
-  /* VALOR DE TAMAÑO MANTENIDO: 300px */
-  max-width: 300px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* --- SECCIÓN DE DESCRIPCIÓN --- */
-.description-section {
-  text-align: left; /* Alineación del texto del párrafo */
-  margin-top: 40px;
-}
-
-.description-section h2 {
-  color: #007bff;
-  font-size: 1.5em;
+.download-title {
+  /* Estilo del título */
+  font-size: 2.5em;
   font-weight: 700;
+  color: #333;
   margin-bottom: 20px;
+  line-height: 1.2;
+  /* Eliminamos el text-shadow que ya no se necesita */
+  text-shadow: none;
 }
 
-.description-section p {
-  color: #555;
+.download-subtitle {
+  /* Nueva descripción que se asemeja al estilo del Hero */
+  font-size: 1.1em;
+  color: #666;
   margin-bottom: 30px;
-  font-size: 0.95em;
 }
 
-/* Enlace "Sobre nosotros" */
-.read-more {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1em;
+/* Estilo del botón de descarga (Puedes reutilizar .btn-secondary o usar el nuevo) */
+.btn-download {
+  /* Reutilizamos el estilo primario o secundario para mantener la consistencia */
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.2em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Asegura que el botón se alinee con el texto a la izquierda */
+  display: inline-block;
 }
 
-.read-more:hover {
-  text-decoration: underline;
+.btn-download:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Contenedor de la imagen del programa */
+.download-image {
+  flex-shrink: 0; 
+  width: 400px; 
+  height: 400px; /* 💡 IMPORTANTE: Asegúrate de que el ancho y el alto sean iguales para un círculo perfecto */
+  /* Sombra para darle ese efecto de "flotando" como en la imagen de referencia */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+  border-radius: 50%; /* 💡 CAMBIO CLAVE: Hace que el contenedor sea redondo */
+  overflow: hidden; /* Esto es crucial para recortar la imagen a la forma redonda */
+  }
+
+.download-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* 💡 AGREGADO: Asegura que la imagen cubra el círculo sin deformarse */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  /* ... tu código responsive anterior ... */
+
+  .download-image {
+    width: 350px; /* Ajusta también el ancho en responsive */
+    height: 350px; /* 💡 IMPORTANTE: Mantén el ancho y el alto iguales aquí también */
+  }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .download-content-wrapper {
+    flex-direction: column; /* Apila el contenido verticalmente en pantallas pequeñas */
+    gap: 40px;
+  }
+
+  .download-text {
+    max-width: 100%;
+    text-align: center; /* Centra el texto en móvil */
+  }
+
+  .download-image {
+    width: 80%; /* La imagen ocupa más espacio en el móvil */
+    max-width: 350px;
+  }
 }
