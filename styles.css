@@ -460,7 +460,7 @@ body {
 }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   /* ... tu código responsive anterior ... */
 
   .download-image {
@@ -469,7 +469,7 @@ body {
   }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   .download-content-wrapper {
     flex-direction: column; /* Apila el contenido verticalmente en pantallas pequeñas */
     gap: 40px;
